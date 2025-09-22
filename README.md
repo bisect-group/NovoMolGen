@@ -31,7 +31,21 @@ conda activate NovoMol
 pip install -r requirements.txt
 
 # 3. (Optional) Flash-Attention for faster training
-bash scripts/install_requirements_mila_cluster.sh
+export MAX_JOBS=4
+export WORK_DIR = ?? #Set the working directory
+FLASH_ATTN_VERSION='2.6.1'
+NV_CC="8.0;8.6"
+FLASH_ATTENTION_DIR="$WORK_DIR/flash-attention-v2"
+git clone https://github.com/Dao-AILab/flash-attention "$FLASH_ATTENTION_DIR"
+pushd "$FLASH_ATTENTION_DIR"
+git checkout "tags/v$FLASH_ATTN_VERSION"
+TORCH_CUDA_ARCH_LIST="$NV_CC" MAX_JOBS="$MAX_JOBS" python setup.py install
+cd csrc/fused_dense_lib && pip install .
+cd ../xentropy && pip install .
+cd ../rotary && pip install .
+cd ../layer_norm && pip install .
+cd ../  # Exit from csrc/rotary
+cd ../  # Exit from flash-attention
 ```
 Prerequisites: Python: 3.10+ , CUDA: 11.8
 
