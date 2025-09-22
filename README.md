@@ -22,10 +22,9 @@
 
 ```bash
 # 1. Conda env with chemistry tool-chain
-conda create -n NovoMol \
-  -c conda-forge -c rdkit \
-  python=3.10 rdkit openbabel openmm pdbfixer syba xtb xtb-python crest \
-  lightgbm=4.3.0 deepsmiles=1.0.1
+conda create -c conda-forge -c r -c msys2 -c lich -c hcc -n NovoMol \
+ python=3.10 openbabel openmm pdbfixer rdkit syba xtb xtb-python crest \
+ lightgbm=4.3.0 deepsmiles=1.0.1
 conda activate NovoMol
 
 # 2. Python deps
