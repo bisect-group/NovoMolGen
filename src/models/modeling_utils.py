@@ -140,6 +140,7 @@ def _sample_molecules_hfmodel(
     prompt: str = "",
     max_length: int = 64,
     temperature: float = 1.0,
+    top_k: int = 1,
     top_p: float = 1.0,
     remove_spaces: bool = True,
     device: torch.device = torch.device("cuda"),
@@ -159,6 +160,7 @@ def _sample_molecules_hfmodel(
     gen_args = dict(
         do_sample=True,
         temperature=temperature,
+        top_k=top_k,
         top_p=top_p,
         max_new_tokens=max_length,
         eos_token_id=eos,
