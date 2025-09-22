@@ -37,7 +37,7 @@ FLASH_ATTN_VERSION='2.6.1'
 NV_CC="8.0;8.6"
 FLASH_ATTENTION_DIR="$WORK_DIR/flash-attention-v2"
 git clone https://github.com/Dao-AILab/flash-attention "$FLASH_ATTENTION_DIR"
-pushd "$FLASH_ATTENTION_DIR"
+cd "$FLASH_ATTENTION_DIR"
 git checkout "tags/v$FLASH_ATTN_VERSION"
 TORCH_CUDA_ARCH_LIST="$NV_CC" MAX_JOBS="$MAX_JOBS" python setup.py install
 cd csrc/fused_dense_lib && pip install .
